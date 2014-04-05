@@ -140,12 +140,12 @@ function spritz_speed() {
   $('#spritz_save').removeClass('saved loaded');
 }
 function spritz_faster() {
-  $('#spritz_wpm').val(parseInt($('#spritz_wpm').val())+50);
+  $('#spritz_wpm').val(parseInt($('#spritz_wpm').val(), 10) + 50);
   spritz_speed();
 }
 function spritz_slower() {
   if ($('#spritz_wpm').val() >= 100) {
-    $('#spritz_wpm').val(parseInt($('#spritz_wpm').val())-50);
+    $('#spritz_wpm').val(parseInt($('#spritz_wpm').val(), 10) - 50);
   }
   spritz_speed();
 }
@@ -155,18 +155,18 @@ function spritz_back() {
   spritz_pause();
   if (i >= 1) {
     word_prev();
-  };
+  }
 }
 function spritz_forward() {
   spritz_pause();
   if (i < words.length) {
     word_next();
-  };
+  }
 }
 
 /* WORDS FUNCTIONS */
 function spritz_zoom(c) {
-  zoom = zoom+c
+  zoom = zoom+c;
   $('#spritz').css('font-size', zoom+'em');
 }
 function spritz_refresh() {
@@ -175,10 +175,10 @@ function spritz_refresh() {
   i = 0;
   spritz_pause();
   word_show(0);
-};
+}
 function spritz_select() {
   $words.select();
-};
+}
 function spritz_expand() {
   $('html').toggleClass('fullscreen');
 }
@@ -192,7 +192,7 @@ function spritz_autosave() {
   } else {
     $('#autosave_checkbox').prop('checked', false);
   }
-};
+}
 
 /* ALERT FUNCTION */
 function spritz_alert(type) {
@@ -236,7 +236,7 @@ $('.controls').on('click', 'a, label', function() {
       spritz_select(); break;
     case 'spritz_expand':
       spritz_expand(); break;
-  };
+  }
   return false;
 });
 $('.controls').on('mousedown', 'a', function() {
@@ -251,7 +251,7 @@ $('.controls').on('mousedown', 'a', function() {
         spritz_forward();
       }, 100);
       break;
-  };
+  }
 });
 $('.controls').on('mouseup', 'a', function() {
   switch (this.id) {
@@ -259,7 +259,7 @@ $('.controls').on('mouseup', 'a', function() {
       clearInterval(spritz_jog_back); break;
     case 'spritz_forward':
       clearInterval(spritz_jog_forward); break;
-  };
+  }
 });
 
 /* KEY EVENTS */
@@ -274,7 +274,7 @@ function button_flash(btn, time) {
 $(document).on('keyup', function(e) {
   if (e.target.tagName.toLowerCase() != 'body') {
     return;
-  };
+  }
   switch (e.keyCode) {
     case 32:
       spritz_flip(); button_flash('pause'); break;
@@ -286,18 +286,18 @@ $(document).on('keyup', function(e) {
       spritz_forward(); button_flash('forward'); break;
     case 40:
       spritz_slower(); button_flash('slower'); break;
-  };
+  }
 });
 $(document).on('keydown', function(e) {
   if (e.target.tagName.toLowerCase() != 'body') {
     return;
-  };
+  }
   switch (e.keyCode) {
     case 37:
       spritz_back(); button_flash('back'); break;
     case 39:
       spritz_forward(); button_flash('forward'); break;
-  };
+  }
 });
 
 
